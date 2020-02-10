@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.passkeeper.web.screens.notes">
+    <data>
+        <instance id="notesDc"
+                  class="com.company.passkeeper.entity.Notes"
+                  view="folder-withs-view">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="notesDc">
+            <column width="250px">
+                <pickerField id="folderField" property="folder">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <textField id="nameNoteField" property="nameNote"/>
+                <textField id="addressUrlField" property="addressUrl"/>
+                <textField id="loginField" property="login"/>
+                <textField id="passwordField" property="password"/>
+                <dateField id="creationDateField" property="creationDate"/>
+                <textField id="miscField" property="misc"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

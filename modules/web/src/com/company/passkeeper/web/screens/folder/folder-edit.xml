@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.passkeeper.web.screens.folder">
+    <data>
+        <instance id="folderDc"
+                  class="com.company.passkeeper.entity.Folder"
+                  view="_local">
+            <loader id="" entityId=""/>
+        </instance>
+        <collection id="notesDc"
+                    class="com.company.passkeeper.entity.Notes"
+                    view="_local">
+            <loader id="notesDl" firstResult="0">
+            <query>
+                <![CDATA[select e from passkeeper_Notes e where e.folder = :folder ]]>
+            </query>
+        </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="folderDc">
+            <column width="250px">
+                <textField id="nameField" property="name"/>
+            </column>
+        </form>
+        <label value="Notes"/>
+        <groupBox width="320px" caption="Notes">
+            <table id="notesTable" height="200px" width="300px" dataContainer="notesDc">
+                <columns>
+                    <column id="nameNote"/>
+                    <column id="addressUrl"/>
+                    <column id="login"/>
+                    <column id="password"/>
+                    <column id="creationDate"/>
+                    <column id="misc"/>
+                </columns>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

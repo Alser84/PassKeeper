@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="foldersTable"
+        messagesPack="com.company.passkeeper.web.screens.folder">
+    <data readOnly="true">
+        <collection id="foldersDc"
+                    class="com.company.passkeeper.entity.Folder"
+                    view="_local">
+            <loader id="foldersDl">
+                <query>
+                    <![CDATA[select e from passkeeper_Folder e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="foldersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="foldersTable"
+                dataLoader="foldersDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="foldersTable"
+                    width="100%"
+                    dataContainer="foldersDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="foldersTable.create"/>
+                <button id="editBtn" action="foldersTable.edit"/>
+                <button id="removeBtn" action="foldersTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

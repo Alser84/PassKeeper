@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="notesesTable"
+        messagesPack="com.company.passkeeper.web.screens.notes">
+    <data readOnly="true">
+        <collection id="notesesDc"
+                    class="com.company.passkeeper.entity.Notes"
+                    view="folder-withs-view">
+            <loader id="notesesDl">
+                <query>
+                    <![CDATA[select e from passkeeper_Notes e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="notesesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="notesesTable"
+                dataLoader="notesesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="notesesTable"
+                    width="100%"
+                    dataContainer="notesesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="folder"/>
+                <column id="nameNote"/>
+                <column id="addressUrl"/>
+                <column id="login"/>
+                <column id="password"/>
+                <column id="creationDate"/>
+                <column id="misc"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="notesesTable.create"/>
+                <button id="editBtn" action="notesesTable.edit"/>
+                <button id="removeBtn" action="notesesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
