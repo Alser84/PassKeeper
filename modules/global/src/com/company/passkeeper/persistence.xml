@@ -2,5 +2,7 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <persistence-unit name="PassKeeper" transaction-type="RESOURCE_LOCAL">
 
+        <class>com.company.passkeeper.entity.Folder</class>
+        <class>com.company.passkeeper.entity.Notes</class>
     </persistence-unit>
 </persistence>
